@@ -1,10 +1,10 @@
 Files are arranged as follows in this repository. Any files that are mentioned in the documentation but are not present in this repository are not public yet. 
 
 ```bash
-├── design
-│   ├── sample4h.txt
-├── data
+├── data 
 │   ├── countmatrix_aug_col4.csv
+│   ├── design
+│     ├── sample4h.txt
 ├── scripts
 │   ├──unzip.sh
 │   ├──fastqc.sh
