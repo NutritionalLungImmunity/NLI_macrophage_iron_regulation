@@ -1,4 +1,4 @@
-#	Trim files as necessary using trimmomatic. Below is example for run1, do the same for run 2. 
+#	Trim files as necessary using trimmomatic. Assuming you have two different runs in separate folders. Below is example for run1, do the same for run 2. 
 #Trimmomatic adapter files uploaded in data folder.
 
 cd /where_your_fastqc_files_are/
