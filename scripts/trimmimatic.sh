@@ -28,16 +28,16 @@ cd /runI
   PE -trimlog runI/trimrun1_${SAMPLE}.log 
   where_your_fastqc_files_are/$r1 
   where_your_fastqc_files_are/$r2  
-  runI/${sname}_R1_trimmed_P.fq.gz 
-  runI/${sname}_R1_trimmed_U.fq.gz 
-  runI/${sname}_R2_trimmed_P.fq.gz 
-  runI/${sname}_R2_trimmed_U.fq.gz 
+  where_you_want_your_output_saved_for_runI/${sname}_R1_trimmed_P.fq.gz 
+  where_you_want_your_output_saved_for_runI/${sname}_R1_trimmed_U.fq.gz 
+  where_you_want_your_output_saved_for_runI/${sname}_R2_trimmed_P.fq.gz 
+  where_you_want_your_output_saved_for_runI/${sname}_R2_trimmed_U.fq.gz 
   LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36 ILLUMINACLIP:data/trimmomatic_PE_adapters.fa:2:30:10
 
 exit
-">runI/trimrun1_$SAMPLE.sh
+">where_you_want_your_script_saved_for_runI/trimrun1_$SAMPLE.sh
 
-qsub runI/trimrun1_$SAMPLE.sh
+qsub where_you_want_your_script_saved_for_runI/trimrun1_$SAMPLE.sh
 
 done
 echo "jobs succesfully submitted"
