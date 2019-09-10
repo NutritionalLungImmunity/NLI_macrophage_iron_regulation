@@ -26,12 +26,13 @@ library(EnhancedVolcano)
 
 ```{r}
 
-counts<-read.table(file='/Users/banditaadhikari/Desktop/backup_to_googleDrive/Aspergillus/final_de/michael_advice/col4_aug/countmatrix_aug_col4.csv', header=TRUE,row.names=1)
+counts<-read.table(file='path_to_your_directory_where_count_files_are/countmatrix_aug_col4.csv', header=TRUE,row.names=1)
 ```
 
 ```{r}
-## this is example code for hour 4 comparison, All comparisons are same. Change names appropriately. 
-samples <- read.table(file='/Users/banditaadhikari/Desktop/backup_to_googleDrive/Aspergillus/final_de/michael_advice/col4_aug/sample4h.txt', header=TRUE,sep='\t',row.names=1,colClasses=c('factor','factor','factor')) 
+## Performing pairwise comparisions to obtain differentially expressed genes between the control and treatment group for hour2, 4, 6 and 8 hours. Below is an example code for hour 4 comparison. All comparisons can be made similarly with appropriate sample names.
+
+samples <- read.table(file='path_to_your_directory_where_the_design_of_the_expt_exists/sample4h.txt', header=TRUE,sep='\t',row.names=1,colClasses=c('factor','factor','factor')) 
 
 columorder = c("M14C", "M24C",  "M34C", "M44C", "M54C", "M64C",    
                "M14F", "M24F",  "M34F", "M44F", "M54F", "M64F")
