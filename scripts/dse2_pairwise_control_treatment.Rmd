@@ -32,7 +32,7 @@ counts<-read.table(file='countmatrix_aug_col4.csv', header=TRUE,row.names=1)
 ```{r}
 ## Performing pairwise comparisions to obtain differentially expressed genes between the control and treatment group for hour2, 4, 6 and 8 hours. Below is an example code for hour 4 comparison. All comparisons can be made similarly with appropriate sample names.
 
-samples <- read.table(file='path_to_your_directory_where_the_design_of_the_expt_exists/sample4h.txt', header=TRUE,sep='\t',row.names=1,colClasses=c('factor','factor','factor')) 
+samples <- read.table(file='/design/sample4h.txt', header=TRUE,sep='\t',row.names=1,colClasses=c('factor','factor','factor')) 
 
 columorder = c("M14C", "M24C",  "M34C", "M44C", "M54C", "M64C",    
                "M14F", "M24F",  "M34F", "M44F", "M54F", "M64F")
@@ -61,12 +61,12 @@ wanted_cts = as.data.frame(counts(dds)[,wanted])
 cts4_id <- tibble::rownames_to_column(wanted_cts, "ensembl_gene_id")
 export4h_FC <- merge(ordered4h_FC, cts4_id, by.x = "ensembl_gene_id", by.y = "ensembl_gene_id" )
 sorted_4H_FC <- export4h_FC[with(ordered4h_FC, order(padj)),]
-write.csv(sorted_4H_FC,file="/Users/banditaadhikari/Desktop/backup_to_googleDrive/Aspergillus/final_de/michael_advice/col4_aug/4h_FC_separate_4c.csv")
+write.csv(sorted_4H_FC,file="/output_directory/4h_FC_separate_4c.csv")
 ```
 
 ```{r}
 library('EnhancedVolcano')
-jpeg('/Users/banditaadhikari/Desktop/backup_to_googleDrive/Aspergillus/final_de/michael_advice/col4_aug/4h_FC_separate_c4.jpg')
+jpeg('output_directory/4h_FC_separate_c4.jpg')
 EnhancedVolcano(sorted_4H_FC,
     lab = sorted_4H_FC$hgnc_symbol,
     x = 'log2FoldChange',
