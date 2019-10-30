@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+
 import itertools
 import random
 import sys
