@@ -16,25 +16,25 @@ This script contains a discrete dynamical system model that converts a static ne
 
 This static network is available [here](https://data.computational-biology.org/#collection/5d41dcf7ef2e26236e2bb3ef/folder/5dbc2a1fef2e2603553c5a07)
 
-
-#### Dependencies of the code:
-* [Python 2.7.16](https://www.python.org/downloads/release/python-2716/)
-* [Python Library itertools](https://docs.python.org/2/library/itertools.html)
-* [Python Library random](https://docs.python.org/3/library/random.html)
-
-
-#### The code can be run on terminal using the following command.
-
-python Macrophage_model.py outputfile.txt number_of_iterations
-
-
-### #Script output
-A text file with steady state - fixed and cyclic - of the systems and the number of basins that converge to a steady state.
-
-##
-The model is constructed by inferring relationships based on bioinformatics analysis, functional enrichment analysis and literature.
-
+The static network and the dynamic model is constructed by inferring relationships based on bioinformatics analysis, functional enrichment analysis and literature.
 
 * Experimental data/results is [here](https://data.computational-biology.org/#collection/5d41dcf7ef2e26236e2bb3ef)
 
 * Bioinformatics analysis is [here](https://github.com/NutritionalLungImmunity/NLI_response_to_Aspergillus_fumigatus_omics_data_analysis/tree/master/Macrophage_Data_Analysis)
+
+#### Prerequisites
+
+Running the code depends on the following packages.
+* [Python 2.7.16](https://www.python.org/downloads/release/python-2716/)
+* [Python Library itertools](https://docs.python.org/2/library/itertools.html)
+* [Python Library random](https://docs.python.org/3/library/random.html)
+
+#### Run command
+The code can be run on terminal using the following command.
+
+python Macrophage_model.py outputfile.txt number_of_iterations
+
+#### Code output
+A text file with steady state - fixed and cyclic - of the systems and the number of basins that converge to a steady state.
+
+
