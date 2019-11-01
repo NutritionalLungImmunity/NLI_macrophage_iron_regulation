@@ -14,14 +14,13 @@ Files in this repository are arranged as such:
 ## Macrophage_model.py
 This script contains a discrete dynamical system model that converts a static network into a dynamical model and computes steady state for the model. The model consists of generalized Boolean functions of how nodes (molecules) in the static network interact with each other and evolve with time.  The nodes in the model takes  0, 1 or 2 state representing low, medium or high expression level, respectively.
 
-This static network is available here.
-https://data.computational-biology.org/#collection/5d41dcf7ef2e26236e2bb3ef/folder/5dbc2a1fef2e2603553c5a07
+This static network is available [here](https://data.computational-biology.org/#collection/5d41dcf7ef2e26236e2bb3ef/folder/5dbc2a1fef2e2603553c5a07)
 
 
 ### Dependencies of the code:
-* [Python 2.7.16] (https://www.python.org/downloads/release/python-2716/)
-* [Python Library itertools] (https://docs.python.org/2/library/itertools.html)
-* [Python Library random] (https://docs.python.org/3/library/random.html)
+* [Python 2.7.16](https://www.python.org/downloads/release/python-2716/)
+* [Python Library itertools](https://docs.python.org/2/library/itertools.html)
+* [Python Library random](https://docs.python.org/3/library/random.html)
 
 
 ### The code can be simply run on terminal using the following command.
@@ -38,4 +37,4 @@ The model is constructed by inferring relationships based on bioinformatics anal
 
 * Experimental data/results is [here](https://data.computational-biology.org/#collection/5d41dcf7ef2e26236e2bb3ef)
 
-* Bioinformatics analysis is [here] (https://github.com/NutritionalLungImmunity/NLI_response_to_Aspergillus_fumigatus_omics_data_analysis/tree/master/Macrophage_Data_Analysis)
+* Bioinformatics analysis is [here](https://github.com/NutritionalLungImmunity/NLI_response_to_Aspergillus_fumigatus_omics_data_analysis/tree/master/Macrophage_Data_Analysis)
