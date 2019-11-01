@@ -32,8 +32,9 @@ Running the code depends on the following packages.
 #### Run command
 The code can be run on terminal using the following command.
 
+```bash
 python Macrophage_model.py outputfile.txt number_of_iterations
-
+```
 #### Code output
 A text file with steady state - fixed and cyclic - of the systems and the number of basins that converge to a steady state.
 
