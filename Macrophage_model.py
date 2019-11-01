@@ -60,7 +60,7 @@ class Model():
         new[IHEME] = continuity(minimum([notfn(old[HO1]), maximum([minimum([old[EHEME], old[HPX], old[CD163]]), minimum([old[HB], old[HP], old[CD91]])])]), old[IHEME])
         new[HO1] = continuity(old[IHEME], old[HO1])
         new[BDH2] = minimum([continuity(old[IRP], old[BDH2]), continuity(notfn(old[TNF]), old[BDH2])])
-        new[MTLIP] =  maximum([continuity(old[LIP], old[MTLIP]), continuity(old[BDH2], old[MTLIP])])
+        new[MTLIP] =  continuity(old[BDH2], old[MTLIP])
 
         self.states = new
         return new if new == old else False
