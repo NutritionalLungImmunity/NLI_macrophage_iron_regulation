@@ -40,14 +40,14 @@ A text file with steady state - fixed and cyclic - of the systems and the number
 
 ## Authors
 * Bandita Adhikari
-- PhD student, UConn Health, Farmington, CT
+-PhD student, UConn Health, Farmington, CT
 * Joseph Masison
-- MD/PhD student, UConn Health, Farmington, CT
+-MD/PhD student, UConn Health, Farmington, CT
 * Luis Sordo Vieira
-- Postdoctoral Associate, The Jackson Laboratory, Farmington, CT
+-Postdoctoral Associate, The Jackson Laboratory, Farmington, CT
 * Reinhard Laubenbacher
-- Professor, Center for Quantitative Medicine, UConn Health, Farmington, CT
-- Professor, The Jackson Laboratory for Genomic Medicine, Farmington, CT
+-Professor, Center for Quantitative Medicine, UConn Health, Farmington, CT
+-Professor, The Jackson Laboratory for Genomic Medicine, Farmington, CT
 
 ## License
 This project is licensed under the MIT License - see LICENSE.md file for details.
