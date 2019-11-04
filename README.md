@@ -14,7 +14,7 @@ Files in this repository are arranged as such:
 ## Macrophage_model.py
 This script contains a discrete dynamical system model that converts a static network into a dynamical model and computes steady state for the model. The model consists of generalized Boolean functions of how nodes (molecules) in the static network interact with each other and evolve with time.  The nodes in the model takes  0, 1 or 2 state representing low, medium or high expression level, respectively.
 
-This static network is available [here](https://data.computational-biology.org/#collection/5d41dcf7ef2e26236e2bb3ef/folder/5dbc2a1fef2e2603553c5a07)
+This static network is available [here](https://data.computational-biology.org/#item/5dc05722ef2e2603553c5a0c)
 
 The static network and the dynamic model is constructed by inferring relationships based on bioinformatics analysis, functional enrichment analysis and literature.
 
