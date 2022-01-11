@@ -14,7 +14,7 @@ Files in this repository are arranged as such:
 ## macrophage_model_3state.py
 This script contains a discrete dynamical system model that converts a static network into a dynamical model and computes steady state for the model. The model consists of generalized Boolean functions of how nodes (molecules) in the static network interact with each other and evolve with time.  The nodes in the model takes  0, 1 or 2 state representing low, medium or high expression level, respectively. 
 
-This static network is available [here](https://data.nutritionallungimmunity.org/#item/5dc05722ef2e2603553c5a0c)
+This static network is available [here](https://github.com/NutritionalLungImmunity/NLI_macrophage_iron_regulation/blob/master/Wiring_diagram_macModel.png)
 
 The static network and the dynamic model is constructed by inferring relationships based on bioinformatics analysis, functional enrichment analysis and literature.
 
