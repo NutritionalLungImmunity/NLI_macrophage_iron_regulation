@@ -11,8 +11,8 @@ Files in this repository are arranged as such:
 └── .gitignore
 ```
 
-## Macrophage_model.py
-This script contains a discrete dynamical system model that converts a static network into a dynamical model and computes steady state for the model. The model consists of generalized Boolean functions of how nodes (molecules) in the static network interact with each other and evolve with time.  The nodes in the model takes  0, 1 or 2 state representing low, medium or high expression level, respectively.
+## macrophage_model_3state.py
+This script contains a discrete dynamical system model that converts a static network into a dynamical model and computes steady state for the model. The model consists of generalized Boolean functions of how nodes (molecules) in the static network interact with each other and evolve with time.  The nodes in the model takes  0, 1 or 2 state representing low, medium or high expression level, respectively. 
 
 This static network is available [here](https://data.nutritionallungimmunity.org/#item/5dc05722ef2e2603553c5a0c)
 
@@ -25,18 +25,19 @@ The static network and the dynamic model is constructed by inferring relationshi
 #### Prerequisites
 
 Running the code depends on the following packages.
-* [Python 2.7.16](https://www.python.org/downloads/release/python-2716/)
-* [Python Library itertools](https://docs.python.org/2/library/itertools.html)
-* [Python Library random](https://docs.python.org/3/library/random.html)
+* [Python 3.0 or newer](https://www.python.org/downloads/)
 
 #### Run command
-The code can be run on terminal using the following command.
+The code can be run on terminal using the following command. Before running the model, the states of external parameters (fungal, iron levels - FE2, FE3, EHEME) need to fixed to the desired state.
 
 ```bash
 python Macrophage_model.py outputfile.txt number_of_iterations
 ```
 #### Code output
-A text file with steady state - fixed and cyclic - of the systems and the number of basins that converge to a steady state.
+A text file with 
+1. steady state - fixed and cyclic - of the systems
+2. the number of basins that converge to a steady state
+3. Intermediate steps to converge to a steady state
 
 ## Authors
 * Bandita Adhikari
@@ -44,10 +45,9 @@ A text file with steady state - fixed and cyclic - of the systems and the number
 * Joseph Masison
 -MD/PhD student, UConn Health, Farmington, CT
 * Luis Sordo Vieira
--Postdoctoral Associate, The Jackson Laboratory, Farmington, CT
+-Postdoctoral Associate, The University of Florida, Geinesville, CT
 * Reinhard Laubenbacher
--Professor, Center for Quantitative Medicine, UConn Health, Farmington, CT
--Professor, The Jackson Laboratory for Genomic Medicine, Farmington, CT
+-Professor, The University of Florida, Geinesville, CT
 
 ## License
 This project is licensed under the MIT License - see LICENSE.md file for details.
