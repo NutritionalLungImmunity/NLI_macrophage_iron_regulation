@@ -5,7 +5,8 @@ This NLI_macrophage_iron_regulation repository contains all resources pertaining
 Files in this repository are arranged as such:
 
 ```bash
-├── Macrophage_model.py
+├── Macrophage_model_3state.py
+├── Wiring_diagram_macModel.png
 ├── README.md
 ├── LICENSE.md
 └── .gitignore
