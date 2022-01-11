@@ -41,6 +41,7 @@ A text file with
 ## Authors
 * Bandita Adhikari
 -PhD student, UConn Health, Farmington, CT
+-Current affiliation - Postodoctoral Fellow, The University of Pennsylvania, Philadelphia, PA
 * Joseph Masison
 -MD/PhD student, UConn Health, Farmington, CT
 * Luis Sordo Vieira
