@@ -18,8 +18,6 @@ This static network is available [here](https://github.com/NutritionalLungImmuni
 
 The static network and the dynamic model is constructed by inferring relationships based on bioinformatics analysis, functional enrichment analysis and literature.
 
-* Experimental data/results is [here](https://data.nutritionallungimmunity.org/#collection/5d41dcf7ef2e26236e2bb3ef)
-
 * Bioinformatics analysis is [here](https://github.com/NutritionalLungImmunity/NLI_response_to_Aspergillus_fumigatus_omics_data_analysis/tree/master/Macrophage_Data_Analysis)
 
 #### Prerequisites
