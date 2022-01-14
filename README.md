@@ -2,7 +2,7 @@ Files are arranged as follows in this repository. Any files that are mentioned i
 
 ```bash
 ├── data 
-│   ├── countmatrix_aug_col4.csv
+│   ├── rseq_counts.csv
 │   ├── design
 │     ├── samples.txt
 ├── scripts
