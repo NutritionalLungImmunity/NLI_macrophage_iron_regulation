@@ -4,7 +4,7 @@ Files are arranged as follows in this repository. Any files that are mentioned i
 ├── data 
 │   ├── countmatrix_aug_col4.csv
 │   ├── design
-│     ├── sample4h.txt
+│     ├── samples.txt
 ├── scripts
 │   ├──unzip.sh
 │   ├──fastqc.sh
