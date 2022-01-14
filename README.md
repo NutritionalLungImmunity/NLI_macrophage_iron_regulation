@@ -2,8 +2,8 @@ Files are arranged as follows in this repository. Any files that are mentioned i
 
 ```bash
 ├── data 
-│   ├── rseq_counts.csv
 │   ├── design
+|     ├──rseq_counts.csv
 │     ├── samples.txt
 ├── scripts
 │   ├──unzip.sh
