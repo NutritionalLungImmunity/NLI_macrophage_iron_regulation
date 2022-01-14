@@ -3,7 +3,7 @@ Files are arranged as follows in this repository. Any files that are mentioned i
 ```bash
 ├── data 
 │   ├── design
-|     ├──rseq_counts.csv
+│     ├──rseq_counts.csv
 │     ├── samples.txt
 ├── scripts
 │   ├──unzip.sh
