@@ -1,0 +1,119 @@
+---
+title: "Bioinformatics Analysis for Macrophage_Fungal Co-culture experiment"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, message=FALSE}
+library(DESeq2)
+library('dplyr')
+library("DEGreport")
+library("ggplot2")
+library('tidyverse')
+library(biomaRt)
+ensembl = useMart(biomart="ensembl", dataset="hsapiens_gene_ensembl")
+#ensembl = useDataset("hsapiens_gene_ensembl",mart=ensembl) #uses human ensembl annotations
+library("AnnotationDbi")
+library("org.Hs.eg.db")
+library("BiocParallel")
+library(data.table)
+```
+
+```{r}
+mydir <- " "
+```
+
+
+```{r}
+samples <- read.table(file= paste0(mydir, "samples.txt"), header=TRUE,sep='\t',row.names=1,colClasses=c('factor','factor','factor'))
+
+counts<-read.table(file=paste0(mydir, "Dec_counts.csv"), header=TRUE,row.names=1)
+remove3 <- c("M30","M32C","M32F","M34C","M34F","M36C","M36F","M38C","M38F") # outliers detected in PCA analysis.
+cts = counts[ , !(names(counts) %in% remove3)]
+
+columorder = c("M10", "M20", "M40", "M50", "M60", 
+               "M12C", "M22C", "M42C", "M52C", "M62C", 
+               "M12F", "M22F", "M42F", "M52F", "M62F", 
+               "M14C", "M24C", "M44C", "M54C", "M64C",    
+               "M14F", "M24F", "M44F", "M54F", "M64F",
+               "M16C", "M26C",  "M46C", "M56C", "M66C", 
+               "M16F", "M26F",  "M46F", "M56F", "M66F", 
+               "M18C", "M28C",  "M48C", "M58C", "M68C",    
+               "M18F", "M28F",  "M48F", "M58F", "M68F")
+ordcounts <- cts[columorder]
+
+filter10 <- ordcounts[rowSums(ordcounts >= 10) >= 10, ] #if 10 reads in at least 10 samples, this should not matter, but you might want to remove genes based on normalized counts. deseq2 does not perform de on normalized counts, so provide to deseq the original matrix. filter10m is the non-normalized, only some genes are removed. 
+
+ddsmy <- DESeqDataSetFromMatrix(countData = filter10, colData = samples, design = ~ donor+group)
+ddsmy <- DESeq(ddsmy)
+resultsNames(ddsmy)
+```
+
+save results
+```{r}
+inter=levels(ddsmy$group)
+for (i in c(2,4,6,8)){
+  ctrl = c(inter[endsWith(inter,as.character(i)) & startsWith(inter,"C")])
+  fungal = c(inter[endsWith(inter,as.character(i)) & startsWith(inter,"F")])
+  res<-results(ddsmy,contrast=c('group',fungal,ctrl), independentFiltering = TRUE,alpha=0.05) #lfcThreshold = 0.5, altHypothesis="greaterAbs"
+  
+  enstogene=getBM(attributes=c('ensembl_gene_id_version', 'ensembl_gene_id', 'hgnc_symbol', 'wikigene_description', 'chromosome_name', 'start_position', 'end_position'), 
+                       filters = 'ensembl_gene_id', 
+                       values = rownames(res), 
+                       mart = ensembl)
+  out<- tibble::rownames_to_column(as.data.frame(res), "ensembl_gene_id")
+  final_out <- merge(out,enstogene, by.x = "ensembl_gene_id", by.y = "ensembl_gene_id")
+  colorder <- c("ensembl_gene_id", "hgnc_symbol", "log2FoldChange", "lfcSE", "pvalue", "padj", "baseMean","stat", 'wikigene_description', "ensembl_gene_id_version", "chromosome_name", "start_position", "end_position")
+  orderedfinal <- final_out[colorder]
+
+  hrctrl <- paste(str_split(ctrl,"")[[1]][nchar(ctrl):1], collapse="")
+  hrfungal <- paste(str_split(fungal,"")[[1]][nchar(fungal):1], collapse="")
+  namess = colnames(counts(ddsmy))
+  wantedcols = namess[endsWith(namess,hrctrl) | endsWith(namess,hrfungal)]
+  
+  wanted_cts = as.data.frame(counts(ddsmy)[,wantedcols])
+  cts_id <- tibble::rownames_to_column(wanted_cts, "ensembl_gene_id")
+  export <- merge(orderedfinal, cts_id, by.x = "ensembl_gene_id", by.y = "ensembl_gene_id" )
+  sorted_export <- export[with(orderedfinal, order(padj)),]
+  write.csv(sorted_export,file=paste0(mydir,ctrl,"_",fungal, "waldcontrast_alpha05_intercept_filter10r10s.csv"))
+}
+```
+
+```{r}
+res8 <-results(ddsmy,contrast=c('group',"F8","C8"), independentFiltering = TRUE,alpha=0.05)
+res6 <-results(ddsmy,contrast=c('group',"F6","C6"), independentFiltering = TRUE,alpha=0.05)
+res4 <-results(ddsmy,contrast=c('group',"F4","C4"), independentFiltering = TRUE,alpha=0.05)
+```
+
+For each time point (re4, res6 or res8), the enriched terms and pathways are obtained using the following script. 
+
+```{r}
+library(clusterProfiler)
+logcutoff <- 0.5
+qvaluecutoff <- 0.001
+
+diffgenes <- rownames(subset(res8, padj<=qvaluecutoff & abs(log2FoldChange)>=logcutoff))
+
+enstogene=getBM(attributes=c('ensembl_gene_id_version', 'ensembl_gene_id', 'hgnc_symbol', 'entrezgene_id'), 
+                 filters = 'ensembl_gene_id', values = diffgenes, mart = ensembl)
+enstogene <- enstogene$entrezgene_id[!is.na(enstogene$entrezgene_id)]
+
+## GENE ONTOLOGY TERMS
+
+GO_BP <- enrichGO(gene = enstogene, OrgDb = org.Hs.eg.db, ont= "BP",
+                pAdjustMethod = "BH", pvalueCutoff  = 0.05, qvalueCutoff  = 0.05, readable = TRUE)
+
+GO_MF <- enrichGO(gene = enstogene, OrgDb = org.Hs.eg.db, ont= "MF",
+                pAdjustMethod = "BH", pvalueCutoff  = 0.05, qvalueCutoff  = 0.05,readable = TRUE)
+
+GO_CC <- enrichGO(gene = enstogene, OrgDb = org.Hs.eg.db, ont= "CC",
+                pAdjustMethod = "BH", pvalueCutoff  = 0.05, qvalueCutoff  = 0.05,readable = TRUE)
+
+
+# REACTOME PATHWAYS
+library(ReactomePA)
+reach44<- enrichPathway(gene=enstogene4, pvalueCutoff = 0.05, readable=TRUE)
+```
